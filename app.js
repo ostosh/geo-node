@@ -13,20 +13,18 @@ var mapPoints = [];
 
 io.on('connection', function(socket){
   console.log('user login');
-		io.sockets.emit('user-count-update', ++userCount);
+  io.sockets.emit('user-count-update', ++userCount);
 
-  
-		socket.on('disconnect', function(){
-				console.log('user logout');
-				io.sockets.emit('user-count-update', --userCount);
+  socket.on('disconnect', function(){
+    console.log('user logout');
+    io.sockets.emit('user-count-update', --userCount);
   });
 
-		socket.on('map-point-add', function(data) {
-				console.log('user add point');
-  		mapPoints.push(data);
+  socket.on('map-point-add', function(data) {
+    console.log('user add point');
+    mapPoints.push(data);
     socket.broadcast.emit('map-point-update', data);
-		});  
-
+  });
 });
 
 

@@ -1,63 +1,62 @@
 (function(window) {
 
-		function initSocket(){
-				var socket = io();
-				var id;
+  function initSocket(){
+    var socket = io();
+    var id;
 
-				socket.on('connect', function(){
-						id	= socket.io.engine.id;
-						if(!Types.isString(id))
-								throw "Error: sockets.io connection failure.";
-						console.log(id);
-				});	
-				
-				$(window).on('beforeunload', function(){
-						socket.close();
+    socket.on('connect', function(){
+      id	= socket.io.engine.id;
+      if(!Types.isString(id))
+        throw "Error: sockets.io connection failure.";
+      console.log(id);
 				});
 
-				return{
-						socket : socket,
-						id : socket.io.engine.id
-				}
-		}
+    $(window).on('beforeunload', function(){
+      socket.close();
+    });
 
-		function initController(){
-				var socketWrapper = initSocket();
+    return{
+      socket : socket,
+      id : socket.io.engine.id
+    }
+  }
 
-				function getSessionID(){
-						return socketWrapper.socket.io.engine.id;		
-				}
+  function initController(){
+    var socketWrapper = initSocket();
 
-				function registerListener(messageid, callback){
-						if(!Types.isString(messageid))
-								throw "Error: cannot register socket.io listener with invalid messageid.";
+    function getSessionID(){
+      return socketWrapper.socket.io.engine.id;		
+    }
+
+    function registerListener(messageid, callback){
+      if(!Types.isString(messageid))
+        throw "Error: cannot register socket.io listener with invalid messageid.";
+
+      if(!Types.isFunction(callback))
+        throw "Error: cannot register socket.io listener with invalid callback.";
+
+      socketWrapper.socket.on(messageid, function(data){
+        callback(data);
+      });
+    }
+
+     function emit(messageid, data){
+      if(!Types.isString(messageid))
+        throw "Error: cannot emit socket.io event with invalid messageid.";
 						
-						if(!Types.isFunction(callback))
-								throw "Error: cannot register socket.io listener with invalid callback.";
+      if(Types.isUndefined(data) || Types.isNull(data))
+        throw "Error: cannot emit socket.io event with invalid data.";
 
-						socketWrapper.socket.on(messageid, function(data){
-								callback(data);
-						});
+      socketWrapper.socket.emit(messageid, data);
+    }
 
-				}
+    return{
+      getSessionID : getSessionID,
+      registerListener : registerListener,
+      emit : emit
+    }
+  }
 
-				function emit(messageid, data){
-						if(!Types.isString(messageid))
-								throw "Error: cannot emit socket.io event with invalid messageid.";
-						
-						if(Types.isUndefined(data) || Types.isNull(data))
-								throw "Error: cannot emit socket.io event with invalid data.";
-
-							socketWrapper.socket.emit(messageid, data);
-				}
-
-				return{
-						getSessionID : getSessionID,
-						registerListener : registerListener,
-						emit : emit
-				}
-		}
-
-		window.SocketController = initController();
+  window.SocketController = initController();
 
 }(window));

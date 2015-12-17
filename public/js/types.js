@@ -1,8 +1,8 @@
 (function(window) {
 	
-		function isString( input ){
-				return typeof input === 'string';
-		}
+  function isString( input ){
+    return typeof input === 'string';
+  }
   
   function isNumber( input ){
     return typeof input === 'number';
@@ -32,15 +32,15 @@
     return typeof input === 'undefined';
   }
 
-		window.Types  = {
-				isString : isString,
-				isNumber : isNumber,
-				isBoolean : isBoolean,
-				isArray : isArray,
-				isObject : isObject,
-				isFunction : isFunction,
-				isNull : isNull,
-				isUndefined : isUndefined
-		};
+  window.Types  = {
+    isString : isString,
+    isNumber : isNumber,
+    isBoolean : isBoolean,
+    isArray : isArray,
+    isObject : isObject,
+    isFunction : isFunction,
+    isNull : isNull,
+    isUndefined : isUndefined
+  };
 
 }(window));

@@ -1,29 +1,29 @@
 doctype html
 html
-		head
-				meta(http-equiv='Content-type', content='text/html; charset=utf-8')
-				title kin/geo server dev
-				link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css', type='text/css')
-				link(rel='stylesheet', href='/css/map.css', type='text/css')
-				script(src='https://cdn.socket.io/socket.io-1.2.0.js')
-				script(src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.js')
-				script(src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js')
-				script(src='/js/types.js')
-				script(src='/js/sockets.js')
-		body
-				header
-					div#titles
-							h1 geo server dev env
-							h4#subtitle.clear NodeJs + Socket.io
-							div users: 
-									label#user-count 1
-							div#tools
-									ul#drawing  
-									h4#message    
-				div.clear        
-				div#map
-				section
-						div.summary
-						h4#current
-				script(src='/js/map.js')
-				script(src='/js/view.js')
+  head
+    meta(http-equiv='Content-type', content='text/html; charset=utf-8')
+    title kin/geo server dev
+    link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css', type='text/css')
+    link(rel='stylesheet', href='/css/map.css', type='text/css')
+    script(src='https://cdn.socket.io/socket.io-1.2.0.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.js')
+    script(src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js')
+    script(src='/js/types.js')
+    script(src='/js/sockets.js')
+  body
+    header
+      div#titles
+        h1 geo server dev env
+        h4#subtitle.clear NodeJs + Socket.io
+        div users: 
+          label#user-count 1
+        div#tools
+          ul#drawing  
+          h4#message    
+    div.clear        
+    div#map
+    section
+      div.summary
+      h4#current
+    script(src='/js/map.js')
+    script(src='/js/view.js')
