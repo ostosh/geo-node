@@ -9,11 +9,11 @@
       if(!Types.isString(id))
         throw "Error: sockets.io connection failure.";
       console.log(id);
-				});
-
-    $(window).on('beforeunload', function(){
-      socket.close();
     });
+
+    window.onbeforeunload = function(e){
+      socket.close();
+    };
 
     return{
       socket : socket,
