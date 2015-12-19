@@ -1,5 +1,5 @@
 
-var map = L.map('map').setView([51.505, -0.09], 13);
+var map = L.map('map').setView([40.7127, -74.0059], 14);
 var activeMapMarkers = {};
 var mapOpts = {
   maxZoom: 22,
@@ -8,7 +8,8 @@ var mapOpts = {
   id: 'mapbox.streets'
 };
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ', mapOpts).addTo(map);
+var apiToken = '<your token here';
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + apiToken, mapOpts).addTo(map);
 
 function updateMapPoint(data){
   if(data['id'] in activeMapMarkers)
